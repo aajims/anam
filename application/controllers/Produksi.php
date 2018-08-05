@@ -41,6 +41,21 @@ Class Produksi extends CI_Controller{
         echo json_encode($arr);
     }
 
+    function search_mesin(){
+        $keyword = $this->uri->segment(3);
+        $data = $this->db->from('mesin')->like('no_mesin',$keyword)->get();
+        foreach($data->result() as $row)
+        {
+            $arr['query'] = $keyword;
+            $arr['suggestions'][] = array(
+                'value'	=>$row->no_mesin,
+                'mesin' => $row->id_mesin,
+                'kapasitas'	=>$row->kapasitas
+            );
+        }
+        echo json_encode($arr);
+    }
+
     function add(){
 		$data['judul']	= 'Data Produksi';
 		$data['mesin']  = $this->model_mesin->tampilkan();
@@ -54,7 +69,8 @@ Class Produksi extends CI_Controller{
             'no_dies'   => $this->input->post('dies'),
             'no_produk' => $this->input->post('prod'),
             'qty'       =>  $this->input->post('qty'),
-            'id_mesin'  => $this->input->post('mesin'),
+            'id_mesin'  => $this->input->post('id_mesin'),
+            'kapasitas'  => $this->input->post('kapasitas'),
             'id_operator'=>  $this->input->post('opr'),
             'target'     =>  $this->input->post('target'),
             'waktu'        =>  $this->input->post('jam'),

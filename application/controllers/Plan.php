@@ -6,8 +6,9 @@ Class Plan extends CI_Controller{
         parent::__construct();
         $this->model_squrity->getsqurity();
         $this->load->database();
+        $this->load->helper('fungsidate');
         $this->load->model('model_plan');
-        $this->load->library(array('template','pagination'));
+        $this->load->library(array('template','pagination', 'html2pdf'));
     }
         
     function index(){
@@ -33,7 +34,8 @@ Class Plan extends CI_Controller{
             'no_wco'       => $this->input->post('wco'),
             'no_dies'   => $this->input->post('dies'),
             'no_produk' => $this->input->post('prod'),
-            'qty'       =>  $this->input->post('qty')
+            'qty'       =>  $this->input->post('qty'),
+            'tgl_plan'=>  date('Y-m-d')
         );
         $this->model_plan->tambah($data);
 		$this->session->set_flashdata('success', 'Data Berhasil di Simpan');
@@ -90,17 +92,11 @@ Class Plan extends CI_Controller{
         $pdf->SetFont('Arial','',10);
 
         $pdf->Cell(7, 7, 'No', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'Tgl Produksi', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'No WCO', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'No Dies', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'No Produk', 1, 0, 'L');
-        $pdf->Cell(15, 7, 'Qty', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'No Mesin', 1, 0, 'L');
-        $pdf->Cell(25, 7, 'Nama Operator', 1, 0, 'L');
-        $pdf->Cell(15, 7, 'Target', 1, 0, 'L');
-        $pdf->Cell(15, 7, 'Jam', 1, 0, 'L');
-        $pdf->Cell(15, 7, 'Downtime', 1, 0, 'L');
-        $pdf->Cell(15, 7, 'Jam pakai', 1, 0, 'L');
+        $pdf->Cell(45, 7, 'Tgl Plan', 1, 0, 'L');
+        $pdf->Cell(40, 7, 'No WCO', 1, 0, 'L');
+        $pdf->Cell(40, 7, 'No Dies', 1, 0, 'L');
+        $pdf->Cell(35, 7, 'No Produk', 1, 0, 'L');
+        $pdf->Cell(25, 7, 'Qty', 1, 0, 'L');
         $pdf->Ln();
 
         $transaksi 	= $this->model_plan->laporan_prod($from, $to);
@@ -110,30 +106,24 @@ Class Plan extends CI_Controller{
         foreach($transaksi->result() as $p)
         {
             $pdf->Cell(7, 7, $no, 1, 0, 'L');
-            $pdf->Cell(25, 7, date('d/m/Y', strtotime($p->tgl_produksi)), 1, 0, 'L');
-            $pdf->Cell(25, 7, $p->no_wco, 1, 0, 'L');
-            $pdf->Cell(25, 7, $p->no_dies, 1, 0, 'L');
-            $pdf->Cell(25, 7, $p->no_produk, 1, 0, 'L');
-            $pdf->Cell(15, 7, number_format($p->qty), 1, 0, 'L');
-            $pdf->Cell(15, 7, $p->no_mesin, 1, 0, 'L');
-            $pdf->Cell(25, 7, $p->nm_operator, 1, 0, 'L');
-            $pdf->Cell(15, 7, number_format($p->target), 1, 0, 'L');
-            $pdf->Cell(15, 7, number_format($p->jam), 1, 0, 'L');
-            $pdf->Cell(15, 7, number_format($p->downtime), 1, 0, 'L');
-            $pdf->Cell(15, 7, number_format($p->jam_pakai), 1, 0, 'L');
+            $pdf->Cell(45, 7, date('d F Y', strtotime($p->tgl_plan)), 1, 0, 'L');
+            $pdf->Cell(40, 7, $p->no_wco, 1, 0, 'L');
+            $pdf->Cell(40, 7, $p->no_dies, 1, 0, 'L');
+            $pdf->Cell(35, 7, $p->no_produk, 1, 0, 'L');
+            $pdf->Cell(25, 7, number_format($p->qty), 1, 0, 'L');
             $pdf->Ln();
 
             $no++;
         }
 
         $pdf->Ln();
-        $pdf->Cell(0, 1, "Mengetahui,  ", 20, 1, 'R');
+        $pdf->Cell(0, 1, "Mengetahui,  ", 20, 1, 'C');
 
         $pdf->Cell(0, 2, "Tangerang,  ".date('d/m/Y', strtotime($tgl)), 0, 1, 'L');
         $pdf->Ln(19);
-        $pdf->Cell(0, 1, "PD Manager ", 0, 1, 'R');
+        $pdf->Cell(0, 1, "PD Manager ", 0, 1, 'C');
         $pdf->Cell(0, 1, "$nama ", 0, 1, 'L');
-
+        ob_end_clean();
         $pdf->Output();
     }
 }

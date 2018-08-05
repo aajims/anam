@@ -16,7 +16,7 @@
         </li>
         <?php
         $sess_level = $this->session->userdata('level');
-        if ($sess_level == "admin") { ?>
+        if ($sess_level == "PPIC") { ?>
         <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Master<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
@@ -42,37 +42,40 @@
             <a href="<?=site_url('produksi/views'); ?>"><i class="fa fa-table fa-fw"></i> Data Produksi</a>
         </li>
         <li>
-            <a href="<?=site_url('reject/view'); ?>"><i class="fa fa-table fa-fw"></i> Data Reject</a>
+            <a href="<?=site_url('reject/view'); ?>"><i class="fa fa-table fa-fw"></i> Data Rijek</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Laporan<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
-<!--                <li>-->
-<!--                    <a href="--><?//=site_url('plan/laporan'); ?><!--">Laporan Planning Produksi</a>-->
-<!--                </li>-->
+                <li>
+                    <a href="<?=site_url('plan/laporan'); ?>">Laporan Planning Produksi</a>
+                </li>
                 <li>
                     <a href="<?=site_url('produksi/laporan'); ?>">Laporan Produksi</a>
                 </li>
                 <li>
-                    <a href="<?=site_url('reject/laporan'); ?>">Laporan Reject</a>
+                    <a href="<?=site_url('reject/laporan'); ?>">Laporan Rijek</a>
                 </li>
             </ul>
         </li>
-        <?php } else if ($sess_level == "staff") { ?>
+        <?php } else if ($sess_level == "Produksi") { ?>
         <li>
             <a href="<?=site_url('produksi'); ?>"><i class="fa fa-table fa-fw"></i> Data Produksi</a>
         </li>
         <li>
-            <a href="<?=site_url('reject'); ?>"><i class="fa fa-table fa-fw"></i> Data Reject</a>
+            <a href="<?=site_url('reject'); ?>"><i class="fa fa-table fa-fw"></i> Data Rijek</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Laporan<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
+                    <a href="<?=site_url('plan/laporan'); ?>">Laporan Planning Produksi</a>
+                </li>
+                <li>
                     <a href="<?=site_url('produksi/laporan'); ?>">Laporan Produksi</a>
                 </li>
                 <li>
-                    <a href="<?=site_url('reject/laporan'); ?>">Laporan Reject</a>
+                    <a href="<?=site_url('reject/laporan'); ?>">Laporan Rijek</a>
                 </li>
             </ul>
         </li>
@@ -84,16 +87,19 @@
                 <a href="<?=site_url('produksi/views'); ?>"><i class="fa fa-table fa-fw"></i> Data Produksi</a>
             </li>
             <li>
-                <a href="<?=site_url('reject/view'); ?>"><i class="fa fa-table fa-fw"></i> Data Reject</a>
+                <a href="<?=site_url('reject/view'); ?>"><i class="fa fa-table fa-fw"></i> Data Rijek</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data Laporan<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
+                        <a href="<?=site_url('plan/laporan'); ?>">Laporan Planning Produksi</a>
+                    </li>
+                    <li>
                         <a href="<?=site_url('produksi/laporan'); ?>">Laporan Produksi</a>
                     </li>
                     <li>
-                        <a href="<?=site_url('reject/laporan'); ?>">Laporan Reject</a>
+                        <a href="<?=site_url('reject/laporan'); ?>">Laporan Rijek</a>
                     </li>
                 </ul>
             </li>

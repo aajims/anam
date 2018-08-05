@@ -11,25 +11,50 @@
             }
         });
     });
+    var sitee = "<?php echo site_url();?>";
+    $(function(){
+        $('.form-control1').autocomplete({
+            serviceUrl: sitee+'/produksi/search_mesin',
+            // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
+            onSelect: function (suggestion) {
+                $('#id_mesin').val(''+suggestion.mesin);
+                $('#kapasitas').val(''+suggestion.kapasitas);
+            }
+        });
+    });
 </script>
 <script>
     function sum() {
         var jumlah = document.getElementById('jam').value;
         var downtime = document.getElementById('time').value;
         var result = parseInt(jumlah) - parseInt(downtime);
+        var jam = (parseInt(jumlah) - parseInt(downtime)) / 60;
         if (!isNaN(result)) {
             document.getElementById('pakai').value = result;
         }
         var pakai = document.getElementById('pakai').value;
-        var efektif = parseInt(pakai) / parseInt(jumlah) * 100;
+        var efektif = (parseInt(pakai) / parseInt(jumlah)) * 100;
         if (!isNaN(efektif)) {
             document.getElementById('efek').value = efektif;
         }
-        var qty = document.getElementById('hasil').value;
-        var target = document.getElementById('target').value;
-        var efesien = parseInt(qty) / parseInt(target) * 100;
+
+        var kapasitas = document.getElementById('kapasitas').value;
+        var target = parseInt(jam) * parseInt(kapasitas);
+        if (!isNaN(target)) {
+            document.getElementById('target').value = target;
+        }
+
+        var hasil = document.getElementById('hasil').value;
+//        var target = document.getElementById('target').value;
+        var qty = document.getElementById('qty').value;
+        var efesien = (parseInt(hasil) / parseInt(qty)) * 100;
         if (!isNaN(efesien)) {
             document.getElementById('efesien').value = efesien;
+        }
+        if (hasil > qty) {
+            alert ('Jumlah hasil tidak bisa melebihi Order');
+        } else {
+            return true;
         }
     }
 </script>
@@ -58,13 +83,13 @@
                         <input type="text" name="qty" id="qty" class="form-control" placeholder="Input Qty Order" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Nama Mesin</label>
-                        <select class="form-control" name="mesin" data-validation="required">
-                            <option value=""> ---  Pilih Mesin --- </option>
-                            <?php foreach ($mesin as $row){ ?>
-                                <option class="form-control" value="<?php echo $row->id_mesin; ?>"><?php echo $row->no_mesin; ?></option>
-                            <?php } ?>
-                        </select>
+                        <label>No Mesin</label>
+                        <input type="text" name="mesin" class="form-control1" placeholder="Input No Mesin" data-validation="required">
+                        <input type="hidden" name="id_mesin" id="id_mesin">
+                    </div>
+                    <div class="form-group">
+                        <label>Kapasitas Mesin</label>
+                        <input type="text" name="kapasitas" id="kapasitas" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Operator</label>
@@ -74,10 +99,6 @@
                                 <option class="form-control" value="<?php echo $row->id_operator; ?>"><?php echo $row->nm_operator; ?></option>
                             <?php } ?>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Target Produksi</label>
-                        <input type="text" name="target" id="target" class="form-control" placeholder="Input jumlah target" data-validation="required">
                     </div>
                 </div>
 
@@ -101,12 +122,16 @@
                         <label>Qty hasil</label>
                         <input type="text" name="hasil" id="hasil" class="form-control" onkeyup="sum()" placeholder="Input Hasil" data-validation="required">
                     </div>
+                    <div class="form-group">
+                        <label>Target Produksi</label>
+                        <input type="text" name="target" id="target" class="form-control" placeholder="Input jumlah target" readonly>
+                    </div>
                     <label>Efektifitas Mesin(%)</label>
                     <div class="form-group input-group">
                         <input type="text" name="efek" id="efek" class="form-control" readonly>
                         <span class="input-group-addon"> %</span>
                     </div>
-                    <label>Efektifitas Mesin(%)</label>
+                    <label>Efesiensi Mesin(%)</label>
                     <div class="form-group input-group">
                         <input type="text" name="efesien" id="efesien" class="form-control" readonly>
                         <span class="input-group-addon"> %</span>

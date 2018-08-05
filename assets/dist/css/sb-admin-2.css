@@ -6,6 +6,15 @@
 body {
   background-color: #f8f8f8;
 }
+.bg {
+  background: url("../../../assets/img/backgroud.jpeg") no-repeat 0px 0px;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+}
+
 #wrapper {
   width: 100%;
 }

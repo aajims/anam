@@ -4,9 +4,10 @@
 		<thead>
 			<tr>
 			 <th>No</th>
-                <th>Tgl Produksi</th>
+                <th>Tgl Plan</th>
                 <th>No WCO</th>
-                <th>Jenis Reject</th>
+                <th>No DIES</th>
+                <th>No Produk</th>
                 <th>Qty</th>
 			</tr>
 		</thead>
@@ -18,9 +19,10 @@
 				echo "
 					<tr>
 						<td>".$no."</td>
-						<td>".tgl_indo($row->tgl_produksi)."</td>
+						<td>".tgl_indo($row->tgl_plan)."</td>
 						<td>".$row->no_wco."</td>
-						<td>".$row->jenis_reject."</td>
+						<td>".$row->no_dies."</td>
+						<td>".$row->no_produk."</td>
 						<td>".$row->qty."</td>						
 					</tr>
 				";
@@ -36,7 +38,7 @@
 		$from 	= date('Y-m-d', strtotime($from));
 		$to		= date('Y-m-d', strtotime($to));
 		?>
-		<a href="<?php echo site_url('reject/laporan_prod_pdf/'.$from.'/'.$to); ?>" target='blank' class='btn btn-default'><img width="45" height="45" src="<?php echo base_url(); ?>assets/img/pdf.jpg"> Export ke PDF</a>
+		<a href="<?php echo site_url('plan/laporan_prod/'.$from.'/'.$to); ?>" target='blank' class='btn btn-default'><img width="45" height="45" src="<?php echo base_url(); ?>assets/img/pdf.jpg"> Export ke PDF</a>
 	</p>
 	<br />
 <?php } ?>

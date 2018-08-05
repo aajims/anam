@@ -65,17 +65,13 @@ class Model_plan extends CI_Model {
 
     function laporan($from, $to){
         $this->db->SELECT('*');
-        $this->db->WHERE('tgl_produksi BETWEEN "'. date('Y-m-d', strtotime($from)). '" and "'. date('Y-m-d', strtotime($to)).'"');
-        $this->db->JOIN('mesin', 'mesin.id_mesin=produksi.id_mesin', 'LEFT');
-        $this->db->JOIN('operator', 'operator.id_operator=produksi.id_operator', 'LEFT');
+        $this->db->WHERE('tgl_plan BETWEEN "'. date('Y-m-d', strtotime($from)). '" and "'. date('Y-m-d', strtotime($to)).'"');
         return $this->db->GET($this->table);
     }
 
     function laporan_prod($from, $to){
         $this->db->SELECT('*');
-        $this->db->WHERE('tgl_produksi BETWEEN "'. date('Y-m-d', strtotime($from)). '" and "'. date('Y-m-d', strtotime($to)).'"');
-        $this->db->JOIN('mesin', 'mesin.id_mesin=produksi.id_mesin', 'LEFT');
-        $this->db->JOIN('operator', 'operator.id_operator=produksi.id_operator', 'LEFT');
+        $this->db->WHERE('tgl_plan BETWEEN "'. date('Y-m-d', strtotime($from)). '" and "'. date('Y-m-d', strtotime($to)).'"');
         return $this->db->GET($this->table);
     }
 

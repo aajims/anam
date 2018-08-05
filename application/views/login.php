@@ -33,16 +33,16 @@
 
 </head>
 
-<body>
-
+<body class="bg">
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="judul">
-                    <h3>Aplikasi KPH Produksi</h3>
+                    <h3>Aplikasi Monitoring Produksi</h3>
                     <h4>di</h4>
                     <h3>PT SELAMAT SEMPURNA Tbk</h3>
                 </div><br>
+                <img src="<?=base_url('assets/img/img-login.jpeg'); ?>" style="margin-left: 65px; height: 210px">
                 <div align="center"><h5><?php echo $this->session->flashdata('info');?></h5></div>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
@@ -55,7 +55,7 @@
                                     <input type="text" class="form-control" placeholder="Input Username" name="username" data-validation="required"  autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" data-validation="required">
+                                    <input class="form-control" placeholder=" Input Password" name="password" type="password" data-validation="required">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>

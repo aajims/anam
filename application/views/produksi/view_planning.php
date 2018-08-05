@@ -20,6 +20,7 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Tgl Plan</th>
                     <th>No WCO</th>
                     <th>No DIES</th>
                     <th>No Produk</th>
@@ -30,6 +31,7 @@
                 <?php $no=1; foreach($plan as $row){ ?>
                     <tr>
                         <td><?php echo $no; ?></td>
+                        <td><?php echo tgl_indo($row->tgl_plan); ?></td>
                         <td><?php echo $row->no_wco; ?></td>
                         <td><?php echo $row->no_dies; ?></td>
                         <td><?php echo $row->no_produk; ?></td>

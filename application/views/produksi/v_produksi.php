@@ -65,7 +65,7 @@
                     <input type="text" name="efek" id="efek" class="form-control" value="<?=$raw->efektifitas; ?>" readonly>
                     <span class="input-group-addon"> %</span>
                 </div>
-                <label>Efektifitas Mesin(%)</label>
+                <label>Efesiensi Mesin(%)</label>
                 <div class="form-group input-group">
                     <input type="text" name="efesien" id="efesien" class="form-control" value="<?=$raw->efesiensi; ?>" readonly>
                     <span class="input-group-addon"> %</span>

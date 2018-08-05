@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 22, 2018 at 06:15 AM
+-- Generation Time: Aug 05, 2018 at 03:05 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -100,6 +100,7 @@ CREATE TABLE `plan` (
   `no_dies` varchar(15) NOT NULL,
   `no_produk` varchar(12) NOT NULL,
   `qty` varchar(7) NOT NULL,
+  `tgl_plan` date NOT NULL,
   `kapasitas` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -107,11 +108,11 @@ CREATE TABLE `plan` (
 -- Dumping data for table `plan`
 --
 
-INSERT INTO `plan` (`id_plan`, `no_wco`, `no_dies`, `no_produk`, `qty`, `kapasitas`) VALUES
-(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', ''),
-(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', ''),
-(3, 'REQ-2018050003', '223344555552', 'F-10003', '2100', ''),
-(4, 'REQ-2018050004', '223344555551', 'F-10004', '2300', '');
+INSERT INTO `plan` (`id_plan`, `no_wco`, `no_dies`, `no_produk`, `qty`, `tgl_plan`, `kapasitas`) VALUES
+(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', '2018-05-09', ''),
+(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', '2018-05-11', ''),
+(3, 'REQ-2018050003', '223344555552', 'F-10003', '2100', '2018-05-13', ''),
+(4, 'REQ-2018050004', '223344555551', 'F-10004', '2300', '2018-05-15', '');
 
 -- --------------------------------------------------------
 
@@ -126,6 +127,7 @@ CREATE TABLE `produksi` (
   `no_produk` varchar(12) NOT NULL,
   `qty` varchar(7) NOT NULL,
   `id_mesin` int(3) NOT NULL,
+  `kapasitas` varchar(7) NOT NULL,
   `id_operator` int(3) NOT NULL,
   `target` varchar(7) NOT NULL,
   `waktu` varchar(3) NOT NULL,
@@ -141,9 +143,13 @@ CREATE TABLE `produksi` (
 -- Dumping data for table `produksi`
 --
 
-INSERT INTO `produksi` (`id_produksi`, `no_wco`, `no_dies`, `no_produk`, `qty`, `id_mesin`, `id_operator`, `target`, `waktu`, `downtime`, `waktu_pakai`, `qty_hasil`, `efektifitas`, `efesiensi`, `tgl_produksi`) VALUES
-(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', 1, 1, '2500', '220', '100', '120', '2400', '54.54', '96', '2018-05-20'),
-(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', 2, 2, '2200', '500', '30', '470', '2200', '94', '100', '2018-05-20');
+INSERT INTO `produksi` (`id_produksi`, `no_wco`, `no_dies`, `no_produk`, `qty`, `id_mesin`, `kapasitas`, `id_operator`, `target`, `waktu`, `downtime`, `waktu_pakai`, `qty_hasil`, `efektifitas`, `efesiensi`, `tgl_produksi`) VALUES
+(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', 1, '', 1, '2500', '220', '100', '120', '2400', '54.54', '96', '2018-05-20'),
+(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', 2, '', 2, '2200', '500', '30', '470', '2200', '94', '100', '2018-05-20'),
+(3, 'REQ-2018050003', '223344555552', 'F-10003', '2100', 0, '2300', 2, '2200', '450', '10', '440', '2200', '97.77', '100', '2018-05-31'),
+(4, 'REQ-2018050002', '223344555552', 'F-10003', '2100', 0, '2450', 3, '2400', '400', '20', '380', '2400', '95', '100', '2018-05-31'),
+(5, 'REQ-2018050003', '223344555552', 'F-10003', '2100', 3, '2200', 2, '2200', '100', '10', '90', '2100', '90', '95.45', '2018-06-02'),
+(6, 'REQ-2018050002', '223344555551', 'F-10002', '2200', 2, '2300', 2, '667000', '300', '10', '290', '2150', '96.66', '0.322', '2018-08-03');
 
 -- --------------------------------------------------------
 
@@ -188,9 +194,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `no_telp`, `level`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Staff Admin', '082111945719', 'admin'),
-(2, 'staff', '21232f297a57a5a743894a0e4a801fc3', 'Staff Produksi', '08787777111', 'staff'),
-(3, 'kepala', '870f669e4bbbfa8a6fde65549826d1c4', 'Kep Departemen', '08787111211', 'kepala');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Staff Admin', '082111945719', 'PPIC'),
+(2, 'staff', '21232f297a57a5a743894a0e4a801fc3', 'Staff Produksi', '08787777111', 'Produksi'),
+(3, 'kepala', '21232f297a57a5a743894a0e4a801fc3', 'Kep Departemen', '08787111211', 'kepala');
 
 --
 -- Indexes for dumped tables
@@ -270,7 +276,7 @@ ALTER TABLE `plan`
 -- AUTO_INCREMENT for table `produksi`
 --
 ALTER TABLE `produksi`
-  MODIFY `id_produksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `reject`

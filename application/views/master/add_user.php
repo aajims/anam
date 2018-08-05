@@ -26,8 +26,8 @@
                         <label>Level</label>
                         <select name="level" class="form-control" data-validation="required">
                             <option value="">-- Pilih Level --</option>
-                            <option value="admin">Staff Admin</option>
-                            <option value="staff">Staff Produksi</option>
+                            <option value="PPIC">Staff PPIC</option>
+                            <option value="Produksi">Staff Produksi</option>
                             <option value="kepala">Kepala Departemen</option>
                         </select>
                     </div>
