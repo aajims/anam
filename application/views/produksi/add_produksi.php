@@ -24,6 +24,20 @@
     });
 </script>
 <script>
+    function getkapasitas(id) {
+        if(id != null)
+        {
+            $.ajax({
+                url: "<?php echo site_url('produksi/get_kapasitas');?>",
+                type: 'GET',
+                dataType: 'json',
+                data: {id: id},
+                success: function(data) {
+                    $("#kapasitas").val(data.kapasitas);
+                }
+            });
+        }
+    }
     function sum() {
         var jumlah = document.getElementById('jam').value;
         var downtime = document.getElementById('time').value;
@@ -84,8 +98,12 @@
                     </div>
                     <div class="form-group">
                         <label>No Mesin</label>
-                        <input type="text" name="mesin" class="form-control1" placeholder="Input No Mesin" data-validation="required">
-                        <input type="hidden" name="id_mesin" id="id_mesin">
+                        <select class="form-control" name="id_mesin" data-validation="required" onchange="getkapasitas(this.value)">
+                            <option value=""> ---  Pilih Mesin --- </option>
+                            <?php foreach ($mesin as $row){ ?>
+                                <option class="form-control" value="<?php echo $row->id_mesin; ?>"><?php echo $row->no_mesin; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Kapasitas Mesin</label>

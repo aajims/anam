@@ -28,6 +28,13 @@ class Model_mesin extends CI_Model {
 		$query = $this->db->get();
 		return $query->row();
 	}
+
+	function get_kapasitas($id){
+        $this->db->from($this->table);
+        $this->db->where('id_mesin',$id);
+        $query = $this->db->get();
+        return $query->row();
+    }
 	
     function tambah($data){
         $this->db->insert($this->table, $data);

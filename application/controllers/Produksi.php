@@ -56,6 +56,18 @@ Class Produksi extends CI_Controller{
         echo json_encode($arr);
     }
 
+    function get_kapasitas(){
+        $id = $_GET['id'];
+        $result = $this->model_mesin->get_kapasitas($id);
+        if($result != null)
+        {
+            $data = array(
+                'kapasitas' => $result->kapasitas
+            );
+            echo json_encode($data);
+        }
+    }
+
     function add(){
 		$data['judul']	= 'Data Produksi';
 		$data['mesin']  = $this->model_mesin->tampilkan();
