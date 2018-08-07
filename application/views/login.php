@@ -42,7 +42,7 @@
                     <h4>di</h4>
                     <h3>PT SELAMAT SEMPURNA Tbk</h3>
                 </div><br>
-                <img src="<?=base_url('assets/img/img-login.jpeg'); ?>" style="margin-left: 65px; height: 210px">
+<!--                <img src="--><?//=base_url('assets/img/img-login.jpeg'); ?><!--" style="margin-left: 65px; height: 210px">-->
                 <div align="center"><h5><?php echo $this->session->flashdata('info');?></h5></div>
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
