@@ -9,6 +9,7 @@
                 <th>No DIES</th>
                 <th>No Produk</th>
                 <th>Qty</th>
+                <th>Keterangan</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +24,8 @@
 						<td>".$row->no_wco."</td>
 						<td>".$row->no_dies."</td>
 						<td>".$row->no_produk."</td>
-						<td>".$row->qty."</td>						
+						<td>".$row->qty."</td>
+						<td>".$row->keterangan."</td>						
 					</tr>
 				";
 				$no++;

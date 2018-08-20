@@ -35,6 +35,7 @@ Class Plan extends CI_Controller{
             'no_dies'   => $this->input->post('dies'),
             'no_produk' => $this->input->post('prod'),
             'qty'       =>  $this->input->post('qty'),
+            'keterangan' => $this->input->post('ket'),
             'tgl_plan'=>  date('Y-m-d')
         );
         $this->model_plan->tambah($data);
@@ -53,6 +54,7 @@ Class Plan extends CI_Controller{
              'no_wco'       => $this->input->post('wco'),
              'no_dies'   => $this->input->post('dies'),
              'no_produk' => $this->input->post('prod'),
+             'keterangan' => $this->input->post('ket'),
              'qty'       =>  $this->input->post('qty')
 		 );
        $this->model_plan->update(array('id_plan' => $this->input->post('id')), $data);
@@ -80,7 +82,7 @@ Class Plan extends CI_Controller{
     function laporan_prod($from,$to){
         $this->load->library('cfpdf');
         $tgl = date('d F Y');
-        $nama = $this->session->userdata('nama_lengkap');
+//        $nama = $this->session->userdata('nama_lengkap');
 
         $pdf = new FPDF('L','mm','A4');
         $pdf->AddPage();
@@ -97,6 +99,7 @@ Class Plan extends CI_Controller{
         $pdf->Cell(40, 7, 'No Dies', 1, 0, 'L');
         $pdf->Cell(35, 7, 'No Produk', 1, 0, 'L');
         $pdf->Cell(25, 7, 'Qty', 1, 0, 'L');
+        $pdf->Cell(40, 7, 'Keterangan', 1, 0, 'L');
         $pdf->Ln();
 
         $transaksi 	= $this->model_plan->laporan_prod($from, $to);
@@ -111,18 +114,19 @@ Class Plan extends CI_Controller{
             $pdf->Cell(40, 7, $p->no_dies, 1, 0, 'L');
             $pdf->Cell(35, 7, $p->no_produk, 1, 0, 'L');
             $pdf->Cell(25, 7, number_format($p->qty), 1, 0, 'L');
+            $pdf->Cell(40, 7, $p->keterangan, 1, 0, 'L');
             $pdf->Ln();
 
             $no++;
         }
 
         $pdf->Ln();
-        $pdf->Cell(0, 1, "Mengetahui,  ", 20, 1, 'C');
+        $pdf->Cell(0, 1, "Mengetahui,  ", 20, 1, 'R');
 
         $pdf->Cell(0, 2, "Tangerang,  ".date('d/m/Y', strtotime($tgl)), 0, 1, 'L');
         $pdf->Ln(19);
-        $pdf->Cell(0, 1, "PD Manager ", 0, 1, 'C');
-        $pdf->Cell(0, 1, "$nama ", 0, 1, 'L');
+        $pdf->Cell(0, 1, "Kepala Departemen ", 0, 1, 'R');
+        $pdf->Cell(0, 1, "Staff Produksi", 0, 1, 'L');
         ob_end_clean();
         $pdf->Output();
     }

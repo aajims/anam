@@ -16,7 +16,7 @@
         </li>
         <?php
         $sess_level = $this->session->userdata('level');
-        if ($sess_level == "PPIC") { ?>
+        if ($sess_level == "Staff PPIC") { ?>
         <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Master<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
@@ -58,7 +58,7 @@
                 </li>
             </ul>
         </li>
-        <?php } else if ($sess_level == "Produksi") { ?>
+        <?php } else if ($sess_level == "Staff Produksi") { ?>
         <li>
             <a href="<?=site_url('produksi'); ?>"><i class="fa fa-table fa-fw"></i> Data Produksi</a>
         </li>
@@ -79,7 +79,7 @@
                 </li>
             </ul>
         </li>
-        <?php } else if ($sess_level == "kepala") { ?>
+        <?php } else if ($sess_level == "Kepala Departemen") { ?>
             <li>
                 <a href="<?=site_url('plan/view'); ?>"><i class="fa fa-table fa-fw"></i>Planning Produksi</a>
             </li>

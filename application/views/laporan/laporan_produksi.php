@@ -10,6 +10,7 @@
                 <th>Mesin</th>
                 <th>Operator</th>
                 <th>Target</th>
+                <th>Qty Hasil</th>
                 <th>Waktu</th>
                 <th>Downtime</th>
 			</tr>
@@ -28,6 +29,7 @@
 						<td>".$row->no_mesin."</td>
 						<td>".$row->nm_operator."</td>
 						<td>".number_format($row->target)."</td>
+						<td>".number_format($row->qty_hasil)."</td>
 						<td>".number_format($row->waktu)."</td>
 						<td>".number_format($row->downtime)."</td>	
 					</tr>

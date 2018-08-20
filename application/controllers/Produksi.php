@@ -156,7 +156,6 @@ Class Produksi extends CI_Controller{
     function laporan_pdf_prod($from,$to){
         $this->load->library('cfpdf');
         $tgl = date('d F Y');
-        $nama = $this->session->userdata('nama_lengkap');
 
         $pdf = new FPDF('L','mm','A4');
         $pdf->AddPage();
@@ -211,24 +210,9 @@ Class Produksi extends CI_Controller{
 
         $pdf->Cell(0, 2, "Tangerang,  ".date('d/m/Y', strtotime($tgl)), 0, 1, 'L');
         $pdf->Ln(19);
-        $pdf->Cell(0, 1, "Kep Bagian ", 0, 1, 'R');
-        $pdf->Cell(0, 1, "$nama ", 0, 1, 'L');
+        $pdf->Cell(0, 1, "Kepala Departemen ", 0, 1, 'R');
+        $pdf->Cell(0, 1, "Staff Produksi ", 0, 1, 'L');
         ob_end_clean();
         $pdf->Output();
     }
-
-//    function laporan_pdf_prod($from,$to){
-//        $this->load->library('html2pdf');
-//        $this->html2pdf->filename('laporan.pdf');
-//        $this->html2pdf->paper('a4', 'portrait');
-//        $data['from']		= date('d F Y', strtotime($from));
-//        $data['to']			= date('d F Y', strtotime($to));
-//        $data['prod']   = $this->model_produksi->laporan($from,$to);
-//        $this->html2pdf->html($this->load->view('laporan/produksi_pdf', $data, true));
-//
-//        if($this->html2pdf->create('save')) {
-//            //PDF was successfully saved or downloaded
-//            echo 'PDF saved';
-//        }
-//    }
 }

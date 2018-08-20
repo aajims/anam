@@ -93,7 +93,7 @@ Class reject extends CI_Controller{
     function laporan_prod_pdf($from,$to){
         $this->load->library('cfpdf');
         $tgl = date('d F Y');
-        $nama = $this->session->userdata('nama_lengkap');
+//        $nama = $this->session->userdata('nama_lengkap');
 
         $pdf = new FPDF('P','mm','A4');
         $pdf->AddPage();
@@ -134,8 +134,8 @@ Class reject extends CI_Controller{
 
         $pdf->Cell(0, 2, "Tangerang,  ".date('d/m/Y', strtotime($tgl)), 0, 1, 'L');
         $pdf->Ln(19);
-        $pdf->Cell(0, 1, "Kep Bagian ", 0, 1, 'C');
-        $pdf->Cell(0, 1, "$nama ", 0, 1, 'L');
+        $pdf->Cell(0, 1, "Kepala Departemen", 0, 1, 'C');
+        $pdf->Cell(0, 1, "Staff Produksi", 0, 1, 'L');
         ob_end_clean();
         $pdf->Output();
     }

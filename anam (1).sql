@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 05, 2018 at 03:05 PM
+-- Generation Time: Aug 20, 2018 at 07:30 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -101,18 +101,19 @@ CREATE TABLE `plan` (
   `no_produk` varchar(12) NOT NULL,
   `qty` varchar(7) NOT NULL,
   `tgl_plan` date NOT NULL,
-  `kapasitas` varchar(5) NOT NULL
+  `keterangan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `plan`
 --
 
-INSERT INTO `plan` (`id_plan`, `no_wco`, `no_dies`, `no_produk`, `qty`, `tgl_plan`, `kapasitas`) VALUES
-(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', '2018-05-09', ''),
-(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', '2018-05-11', ''),
-(3, 'REQ-2018050003', '223344555552', 'F-10003', '2100', '2018-05-13', ''),
-(4, 'REQ-2018050004', '223344555551', 'F-10004', '2300', '2018-05-15', '');
+INSERT INTO `plan` (`id_plan`, `no_wco`, `no_dies`, `no_produk`, `qty`, `tgl_plan`, `keterangan`) VALUES
+(1, 'REQ-2018050001', '2233445552', 'F-10001', '2300', '2018-05-09', 'Sedang Dikerjakan'),
+(2, 'REQ-2018050002', '2233445553', 'F-10002', '2200', '2018-05-11', 'Belum Dikerjakan'),
+(3, 'REQ-2018050003', '2233445551', 'F-10003', '2100', '2018-05-13', 'Sudah Dikerjakan'),
+(4, 'REQ-2018050004', '2233445554', 'F-10004', '2300', '2018-05-15', 'Sedang Dikerjakan'),
+(5, 'REQ-2018080005', '2233445551', 'F-10002111', '1200', '2018-08-10', 'Sudah Dikerjakan');
 
 -- --------------------------------------------------------
 
@@ -144,12 +145,7 @@ CREATE TABLE `produksi` (
 --
 
 INSERT INTO `produksi` (`id_produksi`, `no_wco`, `no_dies`, `no_produk`, `qty`, `id_mesin`, `kapasitas`, `id_operator`, `target`, `waktu`, `downtime`, `waktu_pakai`, `qty_hasil`, `efektifitas`, `efesiensi`, `tgl_produksi`) VALUES
-(1, 'REQ-2018050001', '223344555555', 'F-10001', '2300', 1, '', 1, '2500', '220', '100', '120', '2400', '54.54', '96', '2018-05-20'),
-(2, 'REQ-2018050002', '223344555551', 'F-10002', '2200', 2, '', 2, '2200', '500', '30', '470', '2200', '94', '100', '2018-05-20'),
-(3, 'REQ-2018050003', '223344555552', 'F-10003', '2100', 0, '2300', 2, '2200', '450', '10', '440', '2200', '97.77', '100', '2018-05-31'),
-(4, 'REQ-2018050002', '223344555552', 'F-10003', '2100', 0, '2450', 3, '2400', '400', '20', '380', '2400', '95', '100', '2018-05-31'),
-(5, 'REQ-2018050003', '223344555552', 'F-10003', '2100', 3, '2200', 2, '2200', '100', '10', '90', '2100', '90', '95.45', '2018-06-02'),
-(6, 'REQ-2018050002', '223344555551', 'F-10002', '2200', 2, '2300', 2, '667000', '300', '10', '290', '2150', '96.66', '0.322', '2018-08-03');
+(1, 'REQ-2018050001', '2233445552', 'F-10001', '2300', 1, '2450', 1, '17150', '450', '30', '420', '2200', '93.33', '12.82', '2018-08-10');
 
 -- --------------------------------------------------------
 
@@ -194,9 +190,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `no_telp`, `level`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Staff Admin', '082111945719', 'PPIC'),
-(2, 'staff', '21232f297a57a5a743894a0e4a801fc3', 'Staff Produksi', '08787777111', 'Produksi'),
-(3, 'kepala', '21232f297a57a5a743894a0e4a801fc3', 'Kep Departemen', '08787111211', 'kepala');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Staff Admin', '082111945719', 'Staff PPIC'),
+(2, 'staff', '21232f297a57a5a743894a0e4a801fc3', 'Staff Produksi', '08787777111', 'Staff Produksi'),
+(3, 'kepala', '21232f297a57a5a743894a0e4a801fc3', 'Kep Departemen', '08787111211', 'Kepala Departemen');
 
 --
 -- Indexes for dumped tables
@@ -270,13 +266,13 @@ ALTER TABLE `operator`
 -- AUTO_INCREMENT for table `plan`
 --
 ALTER TABLE `plan`
-  MODIFY `id_plan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_plan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produksi`
 --
 ALTER TABLE `produksi`
-  MODIFY `id_produksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_produksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reject`

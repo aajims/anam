@@ -25,6 +25,7 @@
                     <th>No DIES</th>
                     <th>No Produk</th>
                     <th>Qty Order</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                         <td><?php echo $row->no_dies; ?></td>
                         <td><?php echo $row->no_produk; ?></td>
                         <td><?php echo $row->qty; ?></td>
+                        <td><?php echo $row->keterangan; ?></td>
                         <td class="center">
                             <a class="btn btn-primary" href="<?=site_url('plan/edit/'. $row->id_plan); ?>" >
                                 <i class="fa fa-pencil"></i>

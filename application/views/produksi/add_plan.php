@@ -12,15 +12,24 @@
                     </div>
                     <div class="form-group">
                         <label>No Dies</label>
-                        <input type="text" name="dies" class="form-control" placeholder="Input no dies" data-validation="required">
+                        <input type="text" name="dies" class="form-control" placeholder="Input no dies" data-validation="length" data-validation-length="max10">
                     </div>
                     <div class="form-group">
                         <label>No Produk</label>
-                        <input type="text" name="prod" class="form-control" placeholder="Input no Produk" data-validation="required">
+                        <input type="text" name="prod" class="form-control" placeholder="Input no Produk" data-validation="length" data-validation-length="max10">
                     </div>
                     <div class="form-group">
                         <label>Qty Order</label>
-                        <input type="text" name="qty" class="form-control" placeholder="Input Qty Order" data-validation="required" >
+                        <input type="text" name="qty" class="form-control" placeholder="Input Qty Order" data-validation="length" data-validation-length="max10">
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <select class="form-control" name="ket">
+                            <option value="">  --- Pilih Keterangan ---  </option>
+                            <option value="Sudah Dikerjakan"> Sudah Dikerjakan</option>
+                            <option value="Sedang Dikerjakan"> Sedang Dikerjakan</option>
+                            <option value="Belum Dikerjakan"> Belum Dikerjakan</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save Changes</button>

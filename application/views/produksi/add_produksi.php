@@ -42,33 +42,36 @@
         var jumlah = document.getElementById('jam').value;
         var downtime = document.getElementById('time').value;
         var result = parseInt(jumlah) - parseInt(downtime);
+        var pakai = document.getElementById('pakai').value;
+        var kapasitas = document.getElementById('kapasitas').value;
+        var hasil = document.getElementById('hasil').value;
+//        var qty = document.getElementById('qty').value;
+
+
         var jam = (parseInt(jumlah) - parseInt(downtime)) / 60;
         if (!isNaN(result)) {
             document.getElementById('pakai').value = result;
         }
-        var pakai = document.getElementById('pakai').value;
+
         var efektif = (parseInt(pakai) / parseInt(jumlah)) * 100;
         if (!isNaN(efektif)) {
             document.getElementById('efek').value = efektif;
         }
-
-        var kapasitas = document.getElementById('kapasitas').value;
         var target = parseInt(jam) * parseInt(kapasitas);
         if (!isNaN(target)) {
             document.getElementById('target').value = target;
         }
-
-        var hasil = document.getElementById('hasil').value;
-//        var target = document.getElementById('target').value;
-        var qty = document.getElementById('qty').value;
-        var efesien = (parseInt(hasil) / parseInt(qty)) * 100;
+        var efesien = (parseInt(hasil) / parseInt(target)) * 100;
         if (!isNaN(efesien)) {
             document.getElementById('efesien').value = efesien;
         }
-        if (hasil > qty) {
+
+    }
+    function vali() {
+        var hasil = document.getElementById('hasil').value;
+        var qty = document.getElementById('qty').value;
+        if (parseInt(hasil) >  parseInt(qty)) {
             alert ('Jumlah hasil tidak bisa melebihi Order');
-        } else {
-            return true;
         }
     }
 </script>
@@ -123,12 +126,12 @@
                 <div class="col-sm-6 col-md-6">
                     <label>Waktu Produksi(Menit)</label>
                     <div class="form-group input-group">
-                        <input type="text" name="jam" id="jam" class="form-control" onkeyup="sum()" placeholder="Input jumlah Menit" data-validation="required">
+                        <input type="number" name="jam" id="jam" class="form-control" onkeyup="sum()" placeholder="Input jumlah Menit" data-validation="length" data-validation-length="max4">
                         <span class="input-group-addon"> Menit</span>
                     </div>
                     <label>Downtime(Menit)</label>
                     <div class="form-group input-group">
-                        <input type="text" name="time" id="time" class="form-control" onkeyup="sum()" placeholder="Input jumlah downtime" data-validation="required">
+                        <input type="number" name="time" id="time" class="form-control" onkeyup="sum()" placeholder="Input jumlah downtime" data-validation="length" data-validation-length="max4">
                         <span class="input-group-addon"> Menit</span>
                     </div>
                     <label>Waktu Pakai(Menit)</label>
@@ -138,7 +141,7 @@
                     </div>
                     <div class="form-group">
                         <label>Qty hasil</label>
-                        <input type="text" name="hasil" id="hasil" class="form-control" onkeyup="sum()" placeholder="Input Hasil" data-validation="required">
+                        <input type="text" name="hasil" id="hasil" class="form-control" onkeyup="sum()" placeholder="Input Hasil" onblur="vali(this.value)" data-validation="required">
                     </div>
                     <div class="form-group">
                         <label>Target Produksi</label>

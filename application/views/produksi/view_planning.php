@@ -25,6 +25,7 @@
                     <th>No DIES</th>
                     <th>No Produk</th>
                     <th>Qty Order</th>
+                    <th>Keterangan</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,7 @@
                         <td><?php echo $row->no_dies; ?></td>
                         <td><?php echo $row->no_produk; ?></td>
                         <td><?php echo $row->qty; ?></td>
+                        <td><?php echo $row->keterangan; ?></td>
                     </tr>
                     <?php $no++; }?>
                 </tbody>
